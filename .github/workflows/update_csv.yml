@@ -1,0 +1,26 @@
+name: Actualizar CSV
+
+on:
+  schedule:
+    - cron: "0 10 * * *"
+
+jobs:
+  update_csv:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Actualizar CSV
+        run: |
+          python update_csv.py
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Actualización de datos de precios" -a
+          git push
