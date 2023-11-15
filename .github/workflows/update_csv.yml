@@ -2,7 +2,7 @@ name: Actualizar CSV
 
 on:
   schedule:
-    - cron: "0 10 * * *"
+    - cron: "31 20 * * *"
 
 jobs:
   update_csv:
@@ -20,7 +20,7 @@ jobs:
       - name: Actualizar CSV
         run: |
           python update_csv.py
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
           git commit -m "Actualización de datos de precios" -a
           git push
